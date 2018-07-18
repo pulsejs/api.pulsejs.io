@@ -9,7 +9,8 @@ const models       = {
 };
 
 const routers = {
-	applications: require('./routes/applications')(Pulse)
+	applications: require('./routes/applications')(Pulse),
+	domains: require('./routes/applications.domain')(Pulse)
 };
 
 const app = express();
@@ -53,6 +54,8 @@ app.use('/v1/:v1*?', function (req, res, next) {
 			res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 			res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 			res.setHeader('Content-Type', 'application/json');
+			res.setHeader('X-Powered-By', 'C++');
+			res.setHeader('Server', 'PulseJS Server');
 			res.params = Object.assign({AuthUser: row[0]}, res.query, res.params, res.body, req.body, req.params, req.query);
 			next();
 		} else {
@@ -69,5 +72,6 @@ app.use('/v1/:v1*?', function (req, res, next) {
 });
 
 app.use('/v1/applications', routers.applications);
+app.use('/v1/applications/domains', routers.domains);
 
 module.exports = app;

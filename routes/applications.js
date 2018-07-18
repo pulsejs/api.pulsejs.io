@@ -217,7 +217,7 @@ const applications = function (Pulse) {
 						success: false,
 						errors: [{
 							code: e.errno,
-							message: e.sqlMessage
+							message: (e.errno === 1451) ? 'Referential integrity error, child records' : e.sqlMessage
 						}]
 					}));
 				}
