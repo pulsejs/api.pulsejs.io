@@ -72,7 +72,7 @@ app.use('/v1/:v1*?', function (req, res, next) {
 });
 
 app.use('/v1/applications', routers.applications);
-app.use('/v1/applications/domains', routers.domains);
+app.use('/v1/domains', routers.domains);
 app.use('/v1/clients', routers.clients);
 
 module.exports = app;
