@@ -14,7 +14,8 @@ const domains = function (Pulse) {
 					success: false,
 					errors: [{
 						code: error.errno,
-						message: error.sqlMessage
+						message: error,
+						params:params
 					}]
 				}));
 			}
