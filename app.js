@@ -10,7 +10,8 @@ const models       = {
 
 const routers = {
 	applications: require('./routes/applications')(Pulse),
-	domains: require('./routes/applications.domain')(Pulse)
+	domains: require('./routes/applications.domain')(Pulse),
+	clients: require('./routes/clients')(Pulse)
 };
 
 const app = express();
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/v1/:v1*?', function (req, res, next) {
 	let credentials = auth(req);
 
-	if (!credentials) {
+	if(!credentials) {
 		res.setHeader('WWW-Authenticate', 'Basic realm="example"');
 		res.statusCode = 401;
 		return res.end(JSON.stringify({
@@ -37,7 +38,7 @@ app.use('/v1/:v1*?', function (req, res, next) {
 	}
 
 	models.auth.login(credentials.name, credentials.pass, function (error, row) {
-		if (error) {
+		if(error) {
 			console.log('error', error);
 			res.statusCode = 500;
 			return res.end(JSON.stringify({
@@ -49,7 +50,7 @@ app.use('/v1/:v1*?', function (req, res, next) {
 			}));
 		}
 
-		if (row.length) {
+		if(row.length) {
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 			res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -73,5 +74,6 @@ app.use('/v1/:v1*?', function (req, res, next) {
 
 app.use('/v1/applications', routers.applications);
 app.use('/v1/applications/domains', routers.domains);
+app.use('/v1/clients', routers.clients);
 
 module.exports = app;
