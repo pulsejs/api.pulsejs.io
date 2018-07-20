@@ -55,7 +55,7 @@ app.use('/v1/:v1*?', function (req, res, next) {
 			res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 			res.setHeader('Content-Type', 'application/json');
 			res.setHeader('X-Powered-By', 'C++');
-			res.setHeader('Server', 'PulseJS Server');
+			res.setHeader('Server', 'Pulsejs-Server');
 			res.params = Object.assign({AuthUser: row[0]}, res.query, res.params, res.body, req.body, req.params, req.query);
 			next();
 		} else {
