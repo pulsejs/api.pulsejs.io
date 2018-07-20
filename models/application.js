@@ -30,13 +30,13 @@ const application = function (database) {
 		Pulse.db.query(query, params, callback);
 	};
 
-	this.update = function (params, callback) {
+	this.updateApplication = function (params, callback) {
 		let query = `UPDATE aplications SET aplications.name = ?, aplications.url_logo = ?
 					 WHERE aplications.user_id = ? AND aplications.id = ?`;
 		Pulse.db.query(query, params, callback);
 	};
 
-	this.delete = function (params, callback) {
+	this.deleteApplication = function (params, callback) {
 		let query = `DELETE FROM aplications WHERE aplications.user_id = ? AND aplications.id = ?`;
 		Pulse.db.query(query, params, callback);
 	};

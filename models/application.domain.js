@@ -6,10 +6,8 @@ const domain = function (database) {
 						aplications_domains.id,
 						aplications_domains.domain_name,
 						aplications_domains.time_create
-					FROM
-						aplications_domains
-						INNER JOIN aplications 
-							ON (aplications_domains.aplication_id = aplications.id)
+					FROM aplications_domains
+					INNER JOIN aplications ON (aplications_domains.aplication_id = aplications.id)
 					WHERE aplications.user_id = ? AND aplications_domains.aplication_id LIKE ?`;
 
 		Pulse.db.query(query, params, callback);
@@ -33,7 +31,7 @@ const domain = function (database) {
 		Pulse.db.query(query, params, callback);
 	};
 
-	this.update = function (params, callback) {
+	this.updateDomain = function (params, callback) {
 		let query = `UPDATE aplications_domains
 					 INNER JOIN aplications ON(aplications.id=aplications_domains.aplication_id)
 					 SET domain_name = ?
@@ -41,7 +39,7 @@ const domain = function (database) {
 		Pulse.db.query(query, params, callback);
 	};
 
-	this.delete = function (params, callback) {
+	this.deleteDomain = function (params, callback) {
 		let query = `DELETE aplications_domains.* FROM aplications_domains INNER JOIN aplications ON(aplications.id=aplications_domains.aplication_id)
 					 WHERE aplications.user_id=? AND aplications_domains.aplication_id=? AND aplications_domains.id=?`;
 		Pulse.db.query(query, params, callback);

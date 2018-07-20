@@ -108,7 +108,7 @@ const domains = function (Pulse) {
 				}));
 			}
 
-			models.domains.update(params, function (e, status) {
+			models.domains.updateDomain(params, function (e, status) {
 				if (e) {
 					return res.status(500).end(JSON.stringify({
 						success: false,
@@ -165,7 +165,7 @@ const domains = function (Pulse) {
 				}));
 			}
 
-			models.domains.delete(params, function (e, result) {
+			models.domains.deleteDomain(params, function (e, result) {
 				if (e) {
 					return res.status(500).end(JSON.stringify({
 						success: false,

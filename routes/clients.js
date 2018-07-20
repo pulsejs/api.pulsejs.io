@@ -73,7 +73,7 @@ const domains = function (Pulse) {
 				}));
 			}
 
-			models.client.superquite(params, function (e, rta) {
+			models.client.deleteClient(params, function (e, rta) {
 				if(e) {
 					return res.status(500).end(JSON.stringify({
 						success: false,

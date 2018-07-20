@@ -156,7 +156,7 @@ const applications = function (Pulse) {
 				}));
 			}
 
-			models.applications.update(params, function (e, result) {
+			models.applications.updateApplication(params, function (e, result) {
 				if (e) {
 					return res.status(500).end(JSON.stringify({
 						success: false,
@@ -211,7 +211,7 @@ const applications = function (Pulse) {
 				}));
 			}
 
-			models.applications.delete(params, function (e, result) {
+			models.applications.deleteApplication(params, function (e, result) {
 				if (e) {
 					return res.status(500).end(JSON.stringify({
 						success: false,

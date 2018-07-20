@@ -32,7 +32,7 @@ const client = function (database) {
 		});
 	};
 
-	this.superquite = function (params, callback) {
+	this.deleteClient = function (params, callback) {
 		let query = `DELETE aplications_clients.*, messages.* FROM aplications_clients INNER JOIN aplications ON(aplications.id=aplications_clients.apiid)
 					LEFT JOIN messages ON(messages.from=aplications_clients.id OR messages.to=aplications_clients.id)
 					WHERE aplications.user_id=? AND aplications_clients.apiid=? AND (aplications_clients.id=? OR aplications_clients.client_id=SHA2(?,256))`;
