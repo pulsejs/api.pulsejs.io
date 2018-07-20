@@ -8,14 +8,13 @@ const domains = function (Pulse) {
 
 	router.get('/:apiid', function (req, res, next) {
 		let params = [res.params.AuthUser.id, req.params.apiid];
-		models.domains.getDomainByID(params, function (error, domains) {
+		models.domains.getDomainsByAPI(params, function (error, domains) {
 			if (error) {
 				return res.status(500).end(JSON.stringify({
 					success: false,
 					errors: [{
 						code: error.errno,
-						message: error,
-						params:params
+						message: error.sqlMessage
 					}]
 				}));
 			}
